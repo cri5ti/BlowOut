@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 	
 	void Update ()
 	{
-		var maxSpeed = 2.0f;
+		var maxSpeed = 3.0f;
 
 		var move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
 
