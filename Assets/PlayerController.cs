@@ -1,28 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using System;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
-
-	void Start () {
-		
+public class PlayerController : MonoBehaviour
+{
+	private Animator anim;
+	
+	void Start ()
+	{
+		anim = GetComponent<Animator>();
 	}
 	
 	void Update ()
 	{
-		var speed = 2.0f;
+		var maxSpeed = 2.0f;
 
 		var move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
 
 		transform.localScale = new Vector3(move.x > 0 ? -1 : 1, 1, 1);
 		
-		transform.position += move * speed * Time.deltaTime;
-		
-//		var pos = transform.position;
-//		pos.x += move;
-//		transform.position = pos;
-		//var rb = GetComponent<Rigidbody2D>();
-		// rb.velocity = new Vector2(move * 5f, rb.velocity.y);
+		transform.position += move * maxSpeed * Time.deltaTime;
+
+		anim.SetFloat("speed", Math.Abs(move.x));
+
+		anim.SetFloat("upDown", move.y);
 	}
 }
